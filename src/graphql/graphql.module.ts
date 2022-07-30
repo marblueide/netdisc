@@ -5,9 +5,13 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRoot({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql')
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      context: ({ req }) => {
+        return { req }
+      },
+      uploads: false, 
     })
   ]
 })

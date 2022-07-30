@@ -45,6 +45,7 @@ export class ConfigService {
     return {
       host: this.get('DATABASE_HOST'),
       port: Number(this.get('DATABASE_PORT')),
+      name: this.get("DATABASE_NAME"),
       username: this.get('DATABASE_USER'),
       password: this.get('DATABASE_PASSWORD'),
       database: this.get('DATABASE_NAME')

@@ -1,0 +1,61 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserModel {
+  id: ID!
+  username: String!
+  password: String!
+  name: String!
+  authorization: String!
+  diskSize: Float!
+  useSize: Float!
+}
+
+type PathModel {
+  name: String!
+  update: String!
+  size: Float!
+  directory: Boolean!
+  type: String!
+  imgSrc: String!
+}
+
+type GenerMessageModel {
+  code: Float!
+  message: String!
+}
+
+type Query {
+  getUserById(id: String!): UserModel!
+  login(input: LoginInput!): UserModel!
+  getPath(path: String!): [PathModel!]!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+type Mutation {
+  register(input: RegisterInput!): UserModel!
+  mkdir(path: String!): GenerMessageModel!
+  deleteDir(paths: [String!]!): GenerMessageModel!
+  reName(input: reNameInput!): GenerMessageModel!
+  uploadFile(file: [Upload!]!, path: String!): GenerMessageModel!
+}
+
+input RegisterInput {
+  username: String!
+  password: String!
+  name: String!
+}
+
+input reNameInput {
+  path: String!
+  lastName: String!
+  nextName: String!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
