@@ -26,10 +26,16 @@ type GenerMessageModel {
   message: String!
 }
 
+type VerifyModel {
+  shouldUpload: Boolean!
+  fileList: [String!]!
+}
+
 type Query {
   getUserById(id: String!): UserModel!
   login(input: LoginInput!): UserModel!
   getPath(path: String!): [PathModel!]!
+  verify(hash: String!, path: String!, filename: String!): VerifyModel!
 }
 
 input LoginInput {
@@ -43,6 +49,8 @@ type Mutation {
   deleteDir(paths: [String!]!): GenerMessageModel!
   reName(input: reNameInput!): GenerMessageModel!
   uploadFile(file: [Upload!]!, path: String!): GenerMessageModel!
+  uploadBigFile(chunk: Upload!, hash: String!, path: String!, filename: String!): GenerMessageModel!
+  mergerFile(filename: String!): GenerMessageModel!
 }
 
 input RegisterInput {

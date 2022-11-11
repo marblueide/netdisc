@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, HttpStatus, HttpException } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthenticationError } from 'apollo-server-express';
@@ -14,7 +14,8 @@ export class GraphQLAuthGuard extends AuthGuard('jwt') implements CanActivate {
     try {
       return (await super.canActivate(context)) as boolean;
     } catch (e) {
-      throw new AuthenticationError(e);
+      console.log(e)
+      throw new HttpException(e, HttpStatus.UNAUTHORIZED);
     }
   }
 

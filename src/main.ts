@@ -16,7 +16,7 @@ async function bootstrap() {
       enableImplicitConversion: true
     }
   }))
-  app.use(graphqlUploadExpress({maxFieldSize:2 * 1024 * 1024}))
+  // app.use(graphqlUploadExpress({maxFieldSize:2 * 1024 * 1024}))
   // app.useStaticAssets(join(__dirname, '../static'));
   await useSwagger(app);
   await app.listen(3000);
